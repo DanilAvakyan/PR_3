@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ПРАКТИЧЕСКАЯ РАБОТА №2</title>
+</head>
+<body style="background: linear-gradient(60deg, #00008b, #660099); color: whitesmoke;">
+<div th:insert="Blocks/Header"></div>
+
+<div align="center">
+        <h1>Игры</h1>
+        <a href="/Search/Game">Поиск игры</a>
+        <a> | </a>
+        <a href="/Add/Game">Добавление игры</a>
+</div>
+
+<div th:each="el : ${Games}">
+
+     <h3 th:text="${el.getName()}" ></h3>
+
+     <a>Цена: </a>
+     <a th:text="${el.getPrice()}"></a>
+     <a>&#36;</a>
+
+    <br>
+
+     <a>Разработчик: </a>
+     <a th:text="${el.getDeveloper()}"></a>
+
+    <br>
+
+     <a>Жанр: </a>
+     <a th:text="${el.getGenre()}"></a>
+
+    <br>
+
+     <a>Издатель: </a>
+     <a th:text="${el.getPublisher()}"></a>
+
+    <br>
+
+     <a>Технические требования: </a>
+     <a th:text="${el.getSpecifications()}"></a>
+
+    <br><br>
+
+    <form  style="display:inline"   th:action="'/blog/Game/' + ${el.id} + '/Edit'">
+                <button class="btn btn-warning" type="submit">Изменить</button>
+    </form>
+
+    <form  style="display:inline" th:action="'/blog/Game/' + ${el.id} + '/Remove'" method="post">
+                <button class="btn btn-warning" type="submit">Удалить</button>
+    </form>
+
+    <br>
+    <hr>
+</div>
+
+</body>
+</html>
